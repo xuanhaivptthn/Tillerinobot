@@ -3,6 +3,7 @@ package org.tillerino.ppaddict.chat.waiter;
 import java.util.Properties;
 
 import javax.inject.Named;
+import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -47,6 +48,7 @@ public class TillerinobotConfigurationModule extends AbstractDaggerPropertiesMod
 
 	@Provides
 	@Named("irc.file.props")
+	@Singleton
 	public static Properties props() {
 		Properties properties = new Properties();
 		properties.putAll(System.getProperties());

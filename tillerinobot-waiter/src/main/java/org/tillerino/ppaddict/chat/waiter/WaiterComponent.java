@@ -1,5 +1,7 @@
 package org.tillerino.ppaddict.chat.waiter;
 
+import javax.inject.Singleton;
+
 import org.tillerino.ppaddict.chat.impl.ProcessorsModule;
 
 import dagger.Component;
@@ -8,5 +10,6 @@ import dagger.Component;
 	TillerinobotConfigurationModule.class,
 	ProcessorsModule.class
 })
+@Singleton
 public interface WaiterComponent {
 }
