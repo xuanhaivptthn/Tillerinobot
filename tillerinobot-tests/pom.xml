@@ -55,6 +55,7 @@
 			<groupId>org.tillerino.osu</groupId>
 			<artifactId>tillerinobot-waiter</artifactId>
 			<scope>test</scope>
+			<version>0.20.0</version>
 		</dependency>
 		<dependency>
 			<groupId>javax.ws.rs</groupId>

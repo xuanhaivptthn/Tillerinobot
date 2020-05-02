@@ -6,16 +6,17 @@ import java.util.concurrent.Executors;
 import javax.inject.Singleton;
 
 import org.tillerino.ppaddict.chat.GameChatClient;
+import org.tillerino.ppaddict.chat.waiter.TillerinobotConfigurationModule;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.google.inject.daggeradapter.DaggerAdapter;
 import com.google.inject.name.Names;
 
 import tillerino.tillerinobot.AbstractDatabaseTest.CreateInMemoryDatabaseModule;
 import tillerino.tillerinobot.BotBackend;
 import tillerino.tillerinobot.TestBackend;
-import tillerino.tillerinobot.TillerinobotConfigurationModule;
 
 /**
  * Will connect to an actual IRC server with completely fake data. Use system
@@ -29,7 +30,7 @@ public class IrcTillerinobot extends AbstractModule {
 	protected void configure() {
 		bind(GameChatClient.class).to(BotRunnerImpl.class);
 		install(new CreateInMemoryDatabaseModule());
-		install(new TillerinobotConfigurationModule());
+		install(DaggerAdapter.from(new TillerinobotConfigurationModule()));
 
 		bind(Boolean.class).annotatedWith(Names.named("tillerinobot.ignore")).toInstance(false);
 		bind(BotBackend.class).to(TestBackend.class).in(Singleton.class);

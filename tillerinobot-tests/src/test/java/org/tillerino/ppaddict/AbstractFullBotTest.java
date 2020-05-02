@@ -70,7 +70,6 @@ import tillerino.tillerinobot.BotBackend;
 import tillerino.tillerinobot.FakeAuthenticationService;
 import tillerino.tillerinobot.IRCBot;
 import tillerino.tillerinobot.TestBackend;
-import tillerino.tillerinobot.TillerinobotConfigurationModule;
 import tillerino.tillerinobot.testutil.ExecutorServiceRule;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -154,7 +153,6 @@ public abstract class AbstractFullBotTest {
         @Override
         protected void configure() {
             installMore();
-            install(new TillerinobotConfigurationModule());
             install(new InMemoryQueuesModule());
             install(DaggerAdapter.from(new ProcessorsModule()));
 

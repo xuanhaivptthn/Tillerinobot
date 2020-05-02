@@ -71,7 +71,6 @@ public class LocalConsoleTillerinobot extends AbstractModule {
 	@Override
 	protected void configure() {
 		install(new CreateInMemoryDatabaseModule());
-		install(new TillerinobotConfigurationModule());
 		install(new InMemoryQueuesModule());
 		install(DaggerAdapter.from(new ProcessorsModule()));
 		installMore();
