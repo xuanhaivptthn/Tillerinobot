@@ -61,6 +61,7 @@ import org.tillerino.ppaddict.web.BarePpaddictUserDataService;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Injector;
+import com.google.inject.daggeradapter.DaggerAdapter;
 import com.google.inject.name.Names;
 
 import lombok.RequiredArgsConstructor;
@@ -79,6 +80,8 @@ public abstract class AbstractFullBotTest {
     private class Client implements Runnable {
         private final PircBotX bot;
 
+        private final int botNumber;
+
         private long lastReceivedRecommendation = 0;
 
         private int receivedRecommendations = 0;
@@ -86,6 +89,7 @@ public abstract class AbstractFullBotTest {
         private boolean connected = false;
 
         private Client(int botNumber) {
+            this.botNumber = botNumber;
             Builder<PircBotX> configurationBuilder = new Builder<>()
                     .setServer(ircHost(), ircPort())
                     .setName("user" + botNumber)
@@ -126,10 +130,12 @@ public abstract class AbstractFullBotTest {
         @Override
         public void run() {
             try {
+                log.info("Client {} starting", botNumber);
                 bot.startBot();
-            } catch (Exception e) {
+            } catch (Throwable e) {
                 e.printStackTrace();
             }
+            log.info("Client {} done", botNumber);
         }
 
         private void r() {
@@ -150,7 +156,7 @@ public abstract class AbstractFullBotTest {
             installMore();
             install(new TillerinobotConfigurationModule());
             install(new InMemoryQueuesModule());
-            install(new ProcessorsModule());
+            install(DaggerAdapter.from(new ProcessorsModule()));
 
             bind(String.class).annotatedWith(Names.named("tillerinobot.irc.server")).toInstance(host);
             bind(Integer.class).annotatedWith(Names.named("tillerinobot.irc.port")).toInstance(port);

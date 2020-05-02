@@ -14,6 +14,7 @@
 		<module>tillerinobot-irc</module>
 		<module>tillerinobot-rabbit</module>
 		<module>tillerinobot-live</module>
+		<module>tillerinobot-waiter</module>
 		<module>tillerinobot-tests</module>
 	</modules>
 
@@ -24,6 +25,9 @@
 		<testcontainers.version>1.14.3</testcontainers.version>
 		<slf4j.version>1.7.26</slf4j.version>
 		<project.build.outputTimestamp>2020-02-20T20:20:20Z</project.build.outputTimestamp>
+		<!-- dagger and guice need to match because of the adapter -->
+		<guice.version>4.1.0</guice.version>
+		<dagger.version>2.4</dagger.version>
 	</properties>
 
 	<build>
@@ -267,6 +271,18 @@
 			</dependency>
 			<dependency>
 				<groupId>org.tillerino.osu</groupId>
+				<artifactId>tillerinobot-waiter</artifactId>
+				<version>0.20.0</version>
+			</dependency>
+			<dependency>
+				<groupId>org.tillerino.osu</groupId>
+				<artifactId>tillerinobot-waiter</artifactId>
+				<classifier>tests</classifier>
+				<version>0.20.0</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.tillerino.osu</groupId>
 				<artifactId>tillerinobot</artifactId>
 				<version>0.20.0</version>
 			</dependency>
@@ -342,9 +358,24 @@
 				<version>20.0</version>
 			</dependency>
 			<dependency>
+				<groupId>com.google.dagger</groupId>
+				<artifactId>dagger</artifactId>
+				<version>${dagger.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.dagger</groupId>
+				<artifactId>dagger-compiler</artifactId>
+				<version>${dagger.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.google.inject.extensions</groupId>
+				<artifactId>guice-dagger-adapter</artifactId>
+				<version>${guice.version}</version>
+			</dependency>
+			<dependency>
 				<groupId>com.google.inject</groupId>
 				<artifactId>guice</artifactId>
-				<version>4.1.0</version>
+				<version>${guice.version}</version>
 			</dependency>
 
 			<!-- HTTP -->

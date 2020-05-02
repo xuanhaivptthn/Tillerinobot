@@ -153,6 +153,8 @@ public class MdcUtils {
 	public static final String MDC_THREAD_PRIORITY = "threadPriority";
 	public static final String MDC_USER = "user";
 
+	public static final String MDC_HANDLER_RECOMMEND = "r";
+
 	@RequiredArgsConstructor
 	private static final class MdcSnapshotImpl implements MdcSnapshot {
 		private final Map<String, String> snapshot;

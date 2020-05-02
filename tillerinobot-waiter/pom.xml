@@ -1,0 +1,90 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.tillerino.osu</groupId>
+		<artifactId>tillerinobot-parent</artifactId>
+		<version>0.20.0</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<artifactId>tillerinobot-waiter</artifactId>
+	<name>Waiter</name>
+	<description>
+		Component that connects to chat.
+		Events are forwarded to the core and responses are written to the chat.
+		A status API is provided.
+	</description>
+
+	<dependencies>
+		<!-- Internal -->
+		<dependency>
+			<groupId>org.tillerino.osu</groupId>
+			<artifactId>tillerinobot-model</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.tillerino.osu</groupId>
+			<artifactId>tillerinobot-rabbit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.tillerino.osu</groupId>
+			<artifactId>tillerinobot-irc</artifactId>
+		</dependency>
+
+		<!-- Libraries -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.dagger</groupId>
+			<artifactId>dagger</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.google.dagger</groupId>
+			<artifactId>dagger-compiler</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Test dependencies -->
+		<dependency>
+			<groupId>org.tillerino.osu</groupId>
+			<artifactId>tillerinobot-model</artifactId>
+			<classifier>tests</classifier>
+		</dependency>
+
+		<!-- Containers -->
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>rabbitmq</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<configuration>
+					<includeScope>runtime</includeScope>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<finalName>waiter</finalName>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

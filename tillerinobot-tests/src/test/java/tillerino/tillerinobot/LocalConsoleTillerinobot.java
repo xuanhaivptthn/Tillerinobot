@@ -49,6 +49,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Provides;
+import com.google.inject.daggeradapter.DaggerAdapter;
 import com.google.inject.name.Names;
 
 import lombok.extern.slf4j.Slf4j;
@@ -72,7 +73,7 @@ public class LocalConsoleTillerinobot extends AbstractModule {
 		install(new CreateInMemoryDatabaseModule());
 		install(new TillerinobotConfigurationModule());
 		install(new InMemoryQueuesModule());
-		install(new ProcessorsModule());
+		install(DaggerAdapter.from(new ProcessorsModule()));
 		installMore();
 
 		bind(LiveActivity.class).to(LiveActivityEndpoint.class);

@@ -52,6 +52,11 @@
 			<classifier>tests</classifier>
 		</dependency>
 		<dependency>
+			<groupId>org.tillerino.osu</groupId>
+			<artifactId>tillerinobot-waiter</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>javax.ws.rs</groupId>
 			<artifactId>javax.ws.rs-api</artifactId>
 			<scope>test</scope>
@@ -116,6 +121,11 @@
 			<groupId>com.github.tillerino.twirc</groupId>
 			<artifactId>twirc-server</artifactId>
 			<version>0.0.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.inject.extensions</groupId>
+			<artifactId>guice-dagger-adapter</artifactId>
 			<scope>test</scope>
 		</dependency>
 
