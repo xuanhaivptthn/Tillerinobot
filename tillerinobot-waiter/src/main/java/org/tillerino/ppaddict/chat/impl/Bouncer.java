@@ -20,14 +20,14 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
-import lombok.experimental.Wither;
+import lombok.With;
 
 /**
  * This guy ensures that only a single interactive request from each user is
  * worked on at a time. When a message is received,
- * {@link #tryAcquire(String, long)} is called. If the return value is false,
+ * {@link #tryEnter(String, long)} is called. If the return value is false,
  * the message is dropped. After a message is responded to,
- * {@link #release(String, long)} is called to announce that the machine is now
+ * {@link #exit(String, long)} is called to announce that the machine is now
  * ready work work on messages for that user again. For informational purposes,
  * additional fields can be set like the thread that is currently working on
  * that message.
@@ -44,10 +44,10 @@ public class Bouncer {
 
 		private final long enteredTime;
 
-		@Wither(AccessLevel.PRIVATE)
+		@With(AccessLevel.PRIVATE)
 		private final int attemptsSinceEntered;
 
-		@Wither
+		@With
 		private final boolean warningSent;
 	}
 
